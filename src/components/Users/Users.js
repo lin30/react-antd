@@ -4,7 +4,7 @@ import { Table, Pagination, Popconfirm } from 'antd';
 // import UserModal from './UserModel';
 import { bindActionCreators } from 'redux'
 import * as actions from '../../redux/action'
-
+import { hashHistory } from 'react-router';
 
 function deleteHandler(id) {
   // dispatch({
@@ -24,11 +24,18 @@ class Users extends Component {
   constructor(props) {
     super(props);
   }
+  
   componentDidMount() {//获取数据
-    const { actions } = this.props
-    actions.fetchPosts(1)
+    const { actions, params } = this.props
+    actions.fetchPosts(params)
   }
-  // dva pagnigation不能通过函数调用到 actions
+  componentWillReceiveProps(next) {
+    //
+  }
+  componentDidUpdate(prev, next) {
+    // console.log(prev, next)
+  }
+  // dva pagnigation不能通过外部函数调用到 actions
   pageChangeHandler(page) {
     actions.fetchPosts(page)
   }
@@ -81,7 +88,11 @@ class Users extends Component {
             total={Number(total) || 0}
             current={Number(page)}
             pageSize={3}
-            onChange={(page) => { actions.fetchPosts(page)}}
+            onChange={(page) => { 
+                hashHistory.push(`users/${page}`)
+                actions.fetchPosts(page)
+              }
+            }
           />
         </div>
       </div>
@@ -89,7 +100,15 @@ class Users extends Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, props) {
+  // 获取路由信息
+  const routeInfo = state.routing.locationBeforeTransitions
+  const { pathname } = routeInfo
+  // 判断页码
+  let params = pathname.replace(/[^0-9]/ig,"")
+  if (!params) {
+    params = 1
+  }
   const datas = state['fetchData'].toJS()
   const { users, page, isFetching } = datas
   const { data, total } = users
@@ -97,7 +116,8 @@ function mapStateToProps(state) {
     dataSource: data,
     total,
     page,
-    isFetching
+    isFetching,
+    params
   };
 }
 function mapDispatchToProps(dispatch){

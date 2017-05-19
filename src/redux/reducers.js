@@ -1,4 +1,3 @@
-import {combineReducers} from 'redux';
 import Immutable from 'immutable'
 import { REQUEST_POSTS, RECEIVE_POSTS } from './action'
 

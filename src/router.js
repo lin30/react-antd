@@ -1,5 +1,8 @@
 import React, {Component, PropTypes} from 'react';
-import { Router, Route, Redirect, IndexRoute, browserHistory, hashHistory } from 'react-router';
+import { Router, Route, Redirect, IndexRoute, hashHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux'
+import store from './redux/store'
+const history = syncHistoryWithStore(hashHistory, store)
 
 class App extends React.Component {
     render() {
@@ -30,7 +33,7 @@ const RouteConfig = (
         <Route path="/" component={App}>
             <IndexRoute getComponent={IndexPage}/>
             <Route path="/IndexPage" getComponent={ IndexPage }/>
-            <Route path="/Users" getComponent={ Users }/>
+            <Route path="/Users(/:page)" getComponent={ Users }/>
         </Route>
     </Router>
 );
