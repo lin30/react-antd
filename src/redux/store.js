@@ -7,12 +7,12 @@ import hashHistory from 'react-router'
 import { createLogger } from 'redux-logger'
 
 const middleware = [ thunk ];
-console.log(process.env)
+
 if (process.env.NODE_ENV !== 'production') {
   middleware.push(createLogger());
 }
-//全局唯一的store,挂在window上方便查看
-var store = createStore(
+
+const store = createStore(
     combineReducers({
         ...reducer,
         routing: routerReducer

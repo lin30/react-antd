@@ -4,7 +4,7 @@
   "description": "learn harder!",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --config ./webpack.config.js",
+    "dev": "webpack-dev-server --colors",
     "build": "webpack -p"
   },
   "author": "Terry",
@@ -39,7 +39,6 @@
   },
   "dependencies": {
     "antd": "^2.10.0",
-    "antd-mobile": "^1.0.7",
     "es6-promise": "^4.1.0",
     "flex.css": "^1.1.6",
     "isomorphic-fetch": "^2.2.1",
