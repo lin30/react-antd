@@ -8,5 +8,22 @@
 - 在http://localhost:8888/#/users可以看到后台管理系统
 
 ## 未完成
-- 👌 webpack 代理未配置完成
+- 👌 webpack 代理未配置完成 -- 完成
 - typeScript未引进
+- 为区分生产环境 测试环境
+
+## hmr 配置 
+### 依赖下载
+
+```npm install --save-dev babel-plugin-react-transform``` 
+
+```npm install --save-dev react-transform-hmr```
+
+```npm install babel-preset-react-hmre --save-dev```
+
+
+### .babelrc 配置
+
+```"presets": ["react-hmre"]```
+
+### 同时 DevServer 要开通 hot: true,
