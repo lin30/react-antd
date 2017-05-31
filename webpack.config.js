@@ -74,11 +74,6 @@ module.exports = {
         new ExtractTextPlugin({
             filename: 'main.css'
         }),
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: JSON.stringify('development')
-            }
-        }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.LoaderOptionsPlugin({
             options: {
