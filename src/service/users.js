@@ -3,7 +3,8 @@ import config from '../configs';
 const { url, _limit } = config
 
 export function fetch(page) {
-  return request(`${url}/users?_page=${page}&_limit=${_limit}`);
+  // return request(`${url}/users?_page=${page}&_limit=${_limit}`); // url 模式
+  return request(`/api/users?_page=${page}&_limit=${_limit}`); // webpack proxy模式
 }
 
 export function remove(id) {

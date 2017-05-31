@@ -1,5 +1,6 @@
-# webpack2 + react + react-router + react-redux + react-router-redux + ES6 + antd
-此项目由 dva项目例子拆解而成
+# react + redux + antd + webpack2
+### 全家桶 react-router + react-redux + react-router-redux
+### 此项目由 dva项目例子拆解而成
 ## 项目启动
 - npm install
 - npm run dev
@@ -7,5 +8,5 @@
 - 在http://localhost:8888/#/users可以看到后台管理系统
 
 ## 未完成
-- webpack 代理未配置完成
+- 👌 webpack 代理未配置完成
 - typeScript未引进
