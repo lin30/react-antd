@@ -1,5 +1,5 @@
 const config = {
-    target:'http://cnodejs.org/api/v1/',
-    pageSize:20
+    target: 'http://jsonplaceholder.typicode.com/',
+    _limit: 3
 };
 export default config;
