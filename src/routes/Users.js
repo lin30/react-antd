@@ -7,8 +7,8 @@ import * as actions from '../redux/action'
 
 class Users extends Component {
   componentDidMount() {//获取数据
-    const { actions, params } = this.props
-    actions.fetchPosts(params.page)
+    const { actions, page } = this.props
+    actions.fetchPosts(page)
   }
   render() {
     return (
@@ -24,16 +24,15 @@ class Users extends Component {
 
 function mapStateToProps(state, props) {
   // params -- 路由参数
-  const params = props.params
+  const page = props.params.page || 1
   const datas = state['fetchData'].toJS()
-  const { users, page, isFetching } = datas
+  const { users, isFetching } = datas
   const { data, total } = users
   return {
     dataSource: data,
     total,
     page,
-    isFetching,
-    params
+    isFetching
   };
 }
 

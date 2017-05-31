@@ -22,7 +22,6 @@ const Users = ({props: {
     total,
     page,
     isFetching,
-    params,
     actions
   }}) => {
     const columns = [
