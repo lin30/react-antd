@@ -26,8 +26,7 @@ function mapStateToProps(state, props) {
   // params -- 路由参数
   const page = props.params.page || 1
   const datas = state['fetchData'].toJS()
-  const { users, isFetching } = datas
-  const { data, total } = users
+  const { users: { data, total }, isFetching } = datas
   return {
     dataSource: data,
     total,

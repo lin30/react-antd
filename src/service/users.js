@@ -1,7 +1,9 @@
 import request from '../utils/request';
+import config from '../configs';
+const { url, _limit } = config
 
 export function fetch(page) {
-  return request(`http://jsonplaceholder.typicode.com/users?_page=${page}&_limit=3`);
+  return request(`${url}/users?_page=${page}&_limit=${_limit}`);
 }
 
 export function remove(id) {
