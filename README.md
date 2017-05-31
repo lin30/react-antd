@@ -8,4 +8,4 @@
 
 ## 未完成
 - webpack 代理未配置完成
-- 
+- typeScript未引进

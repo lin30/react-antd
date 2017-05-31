@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Table, Pagination, Popconfirm } from 'antd';
 // import UserModal from './UserModel';
-import { bindActionCreators } from 'redux'
-import * as actions from '../../redux/action'
 import { hashHistory } from 'react-router';
 
 function deleteHandler(id) {
@@ -19,27 +17,14 @@ function editHandler(id, values) {
   // });
 }
 
-
-class Users extends Component {
-  constructor(props) {
-    super(props);
-  }
-  
-  componentDidMount() {//获取数据
-    const { actions, params } = this.props
-    actions.fetchPosts(params)
-  }
-  componentWillReceiveProps(next) {
-    //
-  }
-  componentDidUpdate(prev, next) {
-    // console.log(prev, next)
-  }
-  // dva pagnigation不能通过外部函数调用到 actions
-  pageChangeHandler(page) {
-    actions.fetchPosts(page)
-  }
-  render() { 
+const Users = ({props: {
+    dataSource,
+    total,
+    page,
+    isFetching,
+    params,
+    actions
+  }}) => {
     const columns = [
       {
         title: 'Name',
@@ -72,7 +57,6 @@ class Users extends Component {
         ),
       },
     ];
-    const { dataSource, total, page, isFetching, actions } = this.props
     return (
       <div className='normal'>
         <div>
@@ -97,32 +81,5 @@ class Users extends Component {
         </div>
       </div>
     );
-  }
 }
-
-function mapStateToProps(state, props) {
-  // 获取路由信息
-  const routeInfo = state.routing.locationBeforeTransitions
-  const { pathname } = routeInfo
-  // 判断页码
-  let params = pathname.replace(/[^0-9]/ig,"")
-  if (!params) {
-    params = 1
-  }
-  const datas = state['fetchData'].toJS()
-  const { users, page, isFetching } = datas
-  const { data, total } = users
-  return {
-    dataSource: data,
-    total,
-    page,
-    isFetching,
-    params
-  };
-}
-function mapDispatchToProps(dispatch){
-  return { 
-    actions: bindActionCreators(actions, dispatch)
-  }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Users);
+export default connect()(Users);

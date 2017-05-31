@@ -5,26 +5,26 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import * as actions from '../redux/action'
 
-function Users() {
-  return (
-    <MainLayout location={location}>
-      <div className='normal'>
-        <UsersComponent />
-      </div>
-    </MainLayout>
-  );
+class Users extends Component {
+  componentDidMount() {//获取数据
+    const { actions, params } = this.props
+    actions.fetchPosts(params.page)
+  }
+  render() {
+    return (
+      <MainLayout location={location}>
+        <div className='normal'>
+          <UsersComponent props={this.props}/>
+        </div>
+      </MainLayout>
+    );
+  }
+
 }
 
-// export default Users;
 function mapStateToProps(state, props) {
-  // 获取路由信息
-  const routeInfo = state.routing.locationBeforeTransitions
-  const { pathname } = routeInfo
-  // 判断页码
-  let params = pathname.replace(/[^0-9]/ig,"")
-  if (!params) {
-    params = 1
-  }
+  // params -- 路由参数
+  const params = props.params
   const datas = state['fetchData'].toJS()
   const { users, page, isFetching } = datas
   const { data, total } = users
@@ -36,9 +36,11 @@ function mapStateToProps(state, props) {
     params
   };
 }
+
 function mapDispatchToProps(dispatch){
   return { 
     actions: bindActionCreators(actions, dispatch)
   }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(Users);
