@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Table, Pagination, Popconfirm } from 'antd';
 // import UserModal from './UserModel';
 import { hashHistory } from 'react-router';
+import config from '../../configs'
+const { _limit } = config
 
 function deleteHandler(id) {
   // dispatch({
@@ -70,7 +72,7 @@ const Users = ({props: {
             className="ant-table-pagination"
             total={Number(total) || 0}
             current={Number(page)}
-            pageSize={3}
+            pageSize={_limit}
             onChange={(page) => { 
                 hashHistory.push(`users/${page}`)
                 actions.fetchPosts(page)
