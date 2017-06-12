@@ -8,10 +8,11 @@ export function fetch(page) {
 }
 
 export function remove(id) {
-  return request(`/api/users/${id}`, {
-    method: 'DELETE',
+  return request(`/api/users/remove/${id}`, {
+    method: 'DELETE'
   });
 }
+
 export function patch(id, values) {
   return request(`/api/users/${id}`, {
     method: 'PATCH',

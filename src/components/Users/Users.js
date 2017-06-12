@@ -6,11 +6,8 @@ import { hashHistory } from 'react-router';
 import config from '../../configs'
 const { _limit } = config
 
-function deleteHandler(id) {
-  // dispatch({
-  //   type: 'users/remove',
-  //   payload: id,
-  // });
+function deleteHandler(actions, id) {
+  actions.removeId(id)
 }
 function editHandler(id, values) {
   // dispatch({
@@ -51,7 +48,7 @@ const Users = ({props: {
             {/*<UserModal record={record} onOk={editHandler.bind(null, record.id)}>
               <a>Edit</a>
             </UserModal>*/}
-            <Popconfirm title="Confirm to delete?" onConfirm={deleteHandler.bind(null, record.id)}>
+            <Popconfirm title="Confirm to delete?" onConfirm={deleteHandler.bind(null, actions, record.id)}>
               <a href="">Delete</a>
             </Popconfirm>
           </span>
