@@ -13,3 +13,13 @@
   padding: 0 8px;
   flex: 1 0 auto;
 }
+
+.btn {
+  width: 70px;
+  margin: 10px 0 5px 10px;
+}
+.add{
+  color: #108ee9;
+  margin-left: 5px;
+  font-weight: bold;
+}

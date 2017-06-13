@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import UsersComponent from '../components/Users/Users';
+import AddUserComponent from '../components/Users/AddUser';
 import MainLayout from '../components/MainLayout/MainLayout';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
@@ -14,6 +15,7 @@ class Users extends Component {
     return (
       <MainLayout location={location}>
         <div className='normal'>
+          <AddUserComponent props={this.props}></AddUserComponent>
           <UsersComponent props={this.props}/>
         </div>
       </MainLayout>
