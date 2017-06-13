@@ -11,9 +11,9 @@ async function deleteHandler(actions, id, page) {
   await actions.fetchPosts(page)
 }
 
-function editHandler(actions, id, values) {
-  console.log(id, values)
-  actions.patchId(id, values)
+async function editHandler(actions, page, id, values) {
+  await actions.patchId(id, values)
+  await actions.fetchPosts(page)
 }
 
 const Users = ({props: {
@@ -45,7 +45,7 @@ const Users = ({props: {
         key: 'operation',
         render: (text, record) => (
           <span className='operation'>
-            <UserModal record={record} onOk={editHandler.bind(null, actions, record.id)}>
+            <UserModal record={record} onOk={editHandler.bind(null, actions, page, record.id)}>
               <a>Edit</a>
             </UserModal>
             <Popconfirm title="Confirm to delete?" onConfirm={deleteHandler.bind(null, actions, record.id, page)}>
