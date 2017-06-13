@@ -1,6 +1,9 @@
 import request from '../utils/request';
 import config from '../configs';
-const { url, _limit } = config
+const {
+  url,
+  _limit
+} = config
 
 export function fetch(page) {
   // return request(`${url}/users?_page=${page}&_limit=${_limit}`); // url 模式
@@ -14,8 +17,14 @@ export function remove(id) {
 }
 
 export function patch(id, values) {
-  return request(`/api/users/${id}`, {
-    method: 'PATCH',
-    body: JSON.stringify(values)
+  return request(`/api/users/patch`, {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json" // 设置 Json 头部, express 才可以解析 post 参数
+    },
+    body: JSON.stringify({
+      id,
+      values
+    })
   })
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Table, Pagination, Popconfirm } from 'antd';
-// import UserModal from './UserModel';
+import UserModal from './UserModel';
 import { hashHistory } from 'react-router';
 import config from '../../configs'
 const { _limit } = config
@@ -11,11 +11,9 @@ async function deleteHandler(actions, id, page) {
   await actions.fetchPosts(page)
 }
 
-function editHandler(id, values) {
-  // dispatch({
-  //   type: 'users/patch',
-  //   payload: { id, values },
-  // });
+function editHandler(actions, id, values) {
+  console.log(id, values)
+  actions.patchId(id, values)
 }
 
 const Users = ({props: {
@@ -30,7 +28,7 @@ const Users = ({props: {
         title: 'Name',
         dataIndex: 'name',
         key: 'name',
-        render: text => <a href="">{text}</a>,
+        render: (text, record) => <a>{text}</a>,
       },
       {
         title: 'Email',
@@ -47,9 +45,9 @@ const Users = ({props: {
         key: 'operation',
         render: (text, record) => (
           <span className='operation'>
-            {/*<UserModal record={record} onOk={editHandler.bind(null, record.id)}>
+            <UserModal record={record} onOk={editHandler.bind(null, actions, record.id)}>
               <a>Edit</a>
-            </UserModal>*/}
+            </UserModal>
             <Popconfirm title="Confirm to delete?" onConfirm={deleteHandler.bind(null, actions, record.id, page)}>
               <a href="">Delete</a>
             </Popconfirm>

@@ -1,8 +1,10 @@
-import { fetch, remove } from '../service/users'
+import { fetch, remove, patch } from '../service/users'
 export const REQUEST_POSTS = 'REQUEST_POSTS'
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const REMOVE_ID_BEGIN = 'REMOVE_ID_BEGIN'
 export const REMOVE_ID_END = 'REMOVE_ID_END'
+export const PATCH_ID_BEGIN = 'PATCH_ID_BEGIN'
+export const PATCH_ID_END = 'PATCH_ID_END'
 
 const requestPosts = page => {
   return {
@@ -31,7 +33,19 @@ const removeUserEnd = id => {
     id
   }
 }
+const patchUserBegin = id => {
+  return {
+    type: PATCH_ID_BEGIN,
+    id
+  }
+}
 
+const patchUserEnd = id => {
+  return {
+    type: PATCH_ID_END,
+    id
+  }
+}
 export const fetchPosts = (page) => {
     return dispatch => {
         dispatch(requestPosts(page));
@@ -46,6 +60,15 @@ export const removeId = (id) => {
         dispatch(removeUserBegin(id));
         return remove(id).then(json => {
           dispatch(removeUserEnd(id, json))
+        })
+    }
+}
+
+export const patchId = (id, values) => {
+    return dispatch => {
+        dispatch(patchUserBegin(id));
+        return patch(id, values).then(json => {
+          dispatch(patchUserEnd(id, json))
         })
     }
 }

@@ -10,6 +10,9 @@ class UserEditModal extends Component {
     this.state = {
       visible: false,
     };
+    this.showModelHandler = this.showModelHandler.bind(this)
+    this.hideModelHandler = this.hideModelHandler.bind(this)
+    this.okHandler = this.okHandler.bind(this)
   }
 
   showModelHandler(e) {
