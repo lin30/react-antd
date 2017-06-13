@@ -61,7 +61,8 @@ module.exports = {
         historyApiFallback: true, //不跳转
         proxy: {
             '/api': {
-                target: 'http://jsonplaceholder.typicode.com/',
+                target: 'http://jsonplaceholder.typicode.com/', // 线上地址
+                // target: 'http://localhost:8001/', // mongodb地址
                 secure: false,
                 pathRewrite: {
                     "^/api": ""
