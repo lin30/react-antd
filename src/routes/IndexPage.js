@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './IndexPage.css';
 import MainLayout from '../components/MainLayout/MainLayout';
+console.log(styles)
 function IndexPage() {
   return (
     <MainLayout location={location}>

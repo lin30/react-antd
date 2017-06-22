@@ -31,6 +31,10 @@ function checkStatus(response) {
 //     .catch(err => ({ err }));
 // }
 export default async function request(url, options) {
+  options = {
+    ...options,
+    credentials: "include"
+  }
   const response = await fetch(url, options);
 
   checkStatus(response);
